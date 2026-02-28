@@ -9,64 +9,17 @@
 <body>
     <!-- Header Section -->
     <header>
-        <div class="container header-content">
-            <div class="brand-info">
-                <h1>Swamini Collection</h1>
-                <p class="tagline">Elegant Sarees for Every Occasion</p>
-            </div>
-            <div class="header-actions">
-                <button id="admin-login-btn" class="admin-btn">Login</button>
-                <div id="admin-indicator" class="admin-indicator hidden">
-                    <span class="admin-badge">Admin Mode</span>
-                    <button id="logout-btn" class="logout-btn">Logout</button>
-                </div>
-            </div>
+        <div class="container">
+            <h1>Swamini Collection</h1>
+            <p class="tagline">Elegant Sarees for Every Occasion</p>
         </div>
     </header>
-
-    <!-- Login Modal -->
-    <div id="login-modal" class="modal hidden">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2>Login</h2>
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="admin-email">Gmail</label>
-                    <input type="email" id="admin-email" placeholder="Enter your Gmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="admin-password">Password</label>
-                    <input type="password" id="admin-password" placeholder="Enter password" required>
-                </div>
-                <div id="login-error" class="error-message hidden">Invalid credentials. Please try again.</div>
-                <button type="submit" class="submit-btn">Login</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Admin Panel - Delete Only -->
-    <section id="admin-panel" class="section admin-panel hidden">
-        <div class="container">
-            <h2>Product Management</h2>
-            <div class="admin-content">
-                <!-- Product List for Admin -->
-                <div class="admin-products-section full-width">
-                    <h3>Manage Products - Click Delete to Remove</h3>
-                    <div id="admin-product-list" class="admin-product-list">
-                        <!-- Products will be loaded here with delete options -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Products Section -->
     <section id="products" class="section">
         <div class="container">
             <h2>Our Saree Collection</h2>
-            <div class="product-grid" id="product-grid">
-                <!-- Products will be loaded from JavaScript -->
-            </div>
+            <div class="product-grid" id="product-grid"></div>
         </div>
     </section>
 
