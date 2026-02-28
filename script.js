@@ -13,9 +13,9 @@ const defaultProducts = [
     },
     {
         id: 2,
-        name: "Kanjivaram Silk Saree",
-        image: "images/saree2.jpg",
-        price: 12500
+        name: "Bindu",
+        image: "images/saree4.jpg",
+        price: 1550
     },
     {
         id: 3,
