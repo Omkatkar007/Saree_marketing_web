@@ -1,15 +1,16 @@
 /**
- * Swamini Collection - Authentication & Product Management
- * ==========================================================
+ * Swamini Collection - Authentication & Product Management (Delete Only)
+ * ======================================================================
  * 
  * Authentication:
  * - Admin credentials: vinitakatkar33@gmail.com / admin123
- * - Role-based access: Admin (full CRUD), Visitor (view only)
+ * - Role-based access: Admin (delete only), Visitor (view only)
  * 
  * Product Management:
  * - Products stored in localStorage for persistence
- * - Image URL from Google Drive
- * - CRUD operations: Add, Edit, Delete
+ * - Static product data defined in defaultProducts array
+ * - Admin can ONLY delete products
+ * - No add, edit, or upload functionality
  */
 
 // ===== CONFIGURATION =====
@@ -17,7 +18,7 @@ const ADMIN_EMAIL = 'vinitakatkar33@gmail.com';
 const ADMIN_PASSWORD = 'admin123';
 const STORAGE_KEY = 'swamini_products';
 
-// ===== DEFAULT PRODUCTS =====
+// ===== STATIC PRODUCTS - Edit this array to add/remove products =====
 const defaultProducts = [
     {
         id: 1,
@@ -25,7 +26,12 @@ const defaultProducts = [
         image: "images/saree1.jpg",
         price: 8500
     },
-];
+    {
+        id: 2,
+        name: "Kanjivaram Silk Saree",
+        image: "images/saree2.jpg",
+        price: 12500
+    }]
 
 // ===== STATE =====
 let currentUser = null; // 'admin' or 'visitor' or null
@@ -67,7 +73,7 @@ function displayProducts() {
         const card = document.createElement('div');
         card.className = 'product-card';
         
-        // For visitor mode, show image and price only
+        // Show image and price only (visitor/admin both can view)
         card.innerHTML = `
             <div class="product-image-wrapper">
                 <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='images/PLACEHOLDER.txt'">
@@ -192,73 +198,9 @@ function hideAdminMode() {
     if (adminPanel) adminPanel.classList.add('hidden');
 }
 
-// ===== ADMIN PANEL =====
+// ===== ADMIN PANEL - DELETE ONLY =====
 function initializeAdminPanel() {
-    const addProductForm = document.getElementById('add-product-form');
-    const editProductForm = document.getElementById('edit-product-form');
-    const editModalClose = document.querySelector('.edit-modal-close');
-
-    // Handle add product form
-    if (addProductForm) {
-        addProductForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            addNewProduct();
-        });
-    }
-
-    // Handle edit product form
-    if (editProductForm) {
-        editProductForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            updateProduct();
-        });
-    }
-
-    // Close edit modal
-    if (editModalClose) {
-        editModalClose.addEventListener('click', () => {
-            document.getElementById('edit-modal').classList.add('hidden');
-        });
-    }
-}
-
-function addNewProduct() {
-    const name = document.getElementById('saree-name').value.trim();
-    const price = document.getElementById('saree-price').value;
-    const imageUrl = document.getElementById('saree-image').value.trim();
-
-    if (!name || !price || !imageUrl) {
-        alert('Please fill all fields');
-        return;
-    }
-
-    // Validate URL format
-    if (!imageUrl.startsWith('http')) {
-        alert('Please enter a valid Google Drive URL');
-        return;
-    }
-
-    const products = getProducts();
-    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-    
-    const newProduct = {
-        id: newId,
-        name: name,
-        image: imageUrl, // Store Google Drive URL directly
-        price: parseInt(price)
-    };
-
-    products.push(newProduct);
-    saveProducts(products);
-    
-    // Reset form
-    document.getElementById('add-product-form').reset();
-    
-    // Refresh displays
-    displayProducts();
-    displayAdminProducts();
-    
-    alert('Saree added successfully!');
+    // No form handling needed - only delete functionality
 }
 
 function displayAdminProducts() {
@@ -280,52 +222,11 @@ function displayAdminProducts() {
                 <p class="price">₹${parseInt(product.price).toLocaleString('en-IN')}</p>
             </div>
             <div class="admin-product-actions">
-                <button class="edit-btn" onclick="openEditModal(${product.id})">Edit</button>
                 <button class="delete-btn" onclick="deleteProduct(${product.id})">Delete</button>
             </div>
         `;
         adminProductList.appendChild(item);
     });
-}
-
-function openEditModal(productId) {
-    const products = getProducts();
-    const product = products.find(p => p.id === productId);
-    
-    if (!product) return;
-
-    document.getElementById('edit-product-id').value = productId;
-    document.getElementById('edit-saree-name').value = product.name;
-    document.getElementById('edit-saree-price').value = product.price;
-    document.getElementById('edit-img-preview').src = product.image;
-
-    document.getElementById('edit-modal').classList.remove('hidden');
-}
-
-function updateProduct() {
-    const productId = parseInt(document.getElementById('edit-product-id').value);
-    const name = document.getElementById('edit-saree-name').value.trim();
-    const price = document.getElementById('edit-saree-price').value;
-
-    if (!name || !price) {
-        alert('Please fill all fields');
-        return;
-    }
-
-    let products = getProducts();
-    const index = products.findIndex(p => p.id === productId);
-    
-    if (index !== -1) {
-        products[index].name = name;
-        products[index].price = parseInt(price);
-        saveProducts(products);
-        
-        document.getElementById('edit-modal').classList.add('hidden');
-        displayProducts();
-        displayAdminProducts();
-        
-        alert('Saree updated successfully!');
-    }
 }
 
 function deleteProduct(productId) {

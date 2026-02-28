@@ -44,68 +44,21 @@
         </div>
     </div>
 
-    <!-- Admin Panel -->
+    <!-- Admin Panel - Delete Only -->
     <section id="admin-panel" class="section admin-panel hidden">
         <div class="container">
             <h2>Product Management</h2>
             <div class="admin-content">
-                <!-- Add New Product Form -->
-                <div class="admin-form-section">
-                    <h3>Add New Saree</h3>
-                    <form id="add-product-form" class="product-form">
-                        <div class="form-group">
-                            <label for="saree-name">Saree Name</label>
-                            <input type="text" id="saree-name" placeholder="Enter saree name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="saree-price">Saree Price (₹)</label>
-                            <input type="number" id="saree-price" placeholder="Enter price" min="0" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="saree-image">Google Drive Image URL</label>
-                            <input type="url" id="saree-image" placeholder="https://drive.google.com/uc?export=view&id=IMAGE_ID" required>
-                            <p class="input-hint">Paste your Google Drive image URL above</p>
-                        </div>
-                        <button type="submit" class="submit-btn add-btn">Add Saree</button>
-                    </form>
-                </div>
-
                 <!-- Product List for Admin -->
-                <div class="admin-products-section">
-                    <h3>Manage Products</h3>
+                <div class="admin-products-section full-width">
+                    <h3>Manage Products - Click Delete to Remove</h3>
                     <div id="admin-product-list" class="admin-product-list">
-                        <!-- Products will be loaded here with edit/delete options -->
+                        <!-- Products will be loaded here with delete options -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Edit Product Modal -->
-    <div id="edit-modal" class="modal hidden">
-        <div class="modal-content">
-            <span class="modal-close edit-modal-close">&times;</span>
-            <h2>Edit Saree</h2>
-            <form id="edit-product-form">
-                <input type="hidden" id="edit-product-id">
-                <div class="form-group">
-                    <label for="edit-saree-name">Saree Name</label>
-                    <input type="text" id="edit-saree-name" placeholder="Enter saree name" required>
-                </div>
-                <div class="form-group">
-                    <label for="edit-saree-price">Saree Price (₹)</label>
-                    <input type="number" id="edit-saree-price" placeholder="Enter price" min="0" required>
-                </div>
-                <div class="form-group">
-                    <label>Current Image</label>
-                    <div id="edit-current-image" class="current-image">
-                        <img id="edit-img-preview" src="" alt="Current image">
-                    </div>
-                </div>
-                <button type="submit" class="submit-btn">Save Changes</button>
-            </form>
-        </div>
-    </div>
 
     <!-- Products Section -->
     <section id="products" class="section">

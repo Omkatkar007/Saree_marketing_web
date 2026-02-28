@@ -1,0 +1,26 @@
+# Images Folder for Swamini Collection
+
+Place all product images in this folder.
+
+## Required Images
+
+Add the following images to this folder:
+
+
+
+## Image Requirements
+
+- Format: JPG, PNG, or WebP
+- Recommended size: 600x800 pixels (portrait orientation)
+- Aspect ratio: 3:4 or similar
+- File naming: Use lowercase with hyphens (e.g., my-product-name.jpg)
+
+## How to Add New Product Images
+
+1. Copy your image to this folder
+2. Update the product entry in ../script.js with the correct filename
+
+## How to Remove Product Images
+
+1. Delete the image file from this folder
+2. Remove the product entry from ../script.js
