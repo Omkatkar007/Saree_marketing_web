@@ -62,11 +62,9 @@
                             <input type="number" id="saree-price" placeholder="Enter price" min="0" required>
                         </div>
                         <div class="form-group">
-                            <label for="saree-image">Saree Image</label>
-                            <input type="file" id="saree-image" accept="image/*" required>
-                            <div id="image-preview" class="image-preview hidden">
-                                <img id="preview-img" src="" alt="Preview">
-                            </div>
+                            <label for="saree-image">Google Drive Image URL</label>
+                            <input type="url" id="saree-image" placeholder="https://drive.google.com/uc?export=view&id=IMAGE_ID" required>
+                            <p class="input-hint">Paste your Google Drive image URL above</p>
                         </div>
                         <button type="submit" class="submit-btn add-btn">Add Saree</button>
                     </form>

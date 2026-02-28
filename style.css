@@ -948,6 +948,14 @@ button:focus {
     color: var(--text-muted);
 }
 
+/* Input Hint */
+.input-hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-style: italic;
+}
+
 /* File Input Styling */
 .form-group input[type="file"] {
     padding: 10px;

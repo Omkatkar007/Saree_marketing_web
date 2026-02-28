@@ -8,7 +8,7 @@
  * 
  * Product Management:
  * - Products stored in localStorage for persistence
- * - Image upload using local file selection with preview
+ * - Image URL from Google Drive
  * - CRUD operations: Add, Edit, Delete
  */
 
@@ -138,9 +138,8 @@ function initializeAuth() {
                 // Scroll to admin panel
                 document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
             } else {
-                // Wrong credentials - redirect to products page (page 1)
+                // Wrong credentials - redirect to products page
                 closeLoginModal();
-                // Show visitor message and redirect
                 alert('Invalid credentials. You have been redirected to the products page.');
                 document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
             }
@@ -197,27 +196,7 @@ function hideAdminMode() {
 function initializeAdminPanel() {
     const addProductForm = document.getElementById('add-product-form');
     const editProductForm = document.getElementById('edit-product-form');
-    const imageInput = document.getElementById('saree-image');
     const editModalClose = document.querySelector('.edit-modal-close');
-
-    // Handle image preview
-    if (imageInput) {
-        imageInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview = document.getElementById('image-preview');
-                    const previewImg = document.getElementById('preview-img');
-                    if (preview && previewImg) {
-                        previewImg.src = e.target.result;
-                        preview.classList.remove('hidden');
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    }
 
     // Handle add product form
     if (addProductForm) {
@@ -246,41 +225,40 @@ function initializeAdminPanel() {
 function addNewProduct() {
     const name = document.getElementById('saree-name').value.trim();
     const price = document.getElementById('saree-price').value;
-    const imageInput = document.getElementById('saree-image');
-    const file = imageInput.files[0];
+    const imageUrl = document.getElementById('saree-image').value.trim();
 
-    if (!name || !price || !file) {
+    if (!name || !price || !imageUrl) {
         alert('Please fill all fields');
         return;
     }
 
-    // Read image as data URL for local storage
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const products = getProducts();
-        const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
-        
-        const newProduct = {
-            id: newId,
-            name: name,
-            image: e.target.result, // Store as base64 for local storage
-            price: parseInt(price)
-        };
+    // Validate URL format
+    if (!imageUrl.startsWith('http')) {
+        alert('Please enter a valid Google Drive URL');
+        return;
+    }
 
-        products.push(newProduct);
-        saveProducts(products);
-        
-        // Reset form
-        document.getElementById('add-product-form').reset();
-        document.getElementById('image-preview').classList.add('hidden');
-        
-        // Refresh displays
-        displayProducts();
-        displayAdminProducts();
-        
-        alert('Saree added successfully!');
+    const products = getProducts();
+    const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+    
+    const newProduct = {
+        id: newId,
+        name: name,
+        image: imageUrl, // Store Google Drive URL directly
+        price: parseInt(price)
     };
-    reader.readAsDataURL(file);
+
+    products.push(newProduct);
+    saveProducts(products);
+    
+    // Reset form
+    document.getElementById('add-product-form').reset();
+    
+    // Refresh displays
+    displayProducts();
+    displayAdminProducts();
+    
+    alert('Saree added successfully!');
 }
 
 function displayAdminProducts() {
