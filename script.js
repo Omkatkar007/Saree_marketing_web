@@ -308,8 +308,301 @@ const defaultProducts = [
     name: "Katha Tanya",
     image: "images/saree51.jpg",
     price: 1250
+},
+{
+    id: 52,
+    name: "Rajvansh Paithani",
+    image: "images/saree52.jpg",
+    price: 1550
+},
+{
+    id: 53,
+    name: "Rajvansh Paithani",
+    image: "images/saree53.jpg",
+    price: 1550
+},
+{
+    id: 54,
+    name: "Rajvansh Paithani",
+    image: "images/saree54.jpg",
+    price: 1550
+},
+{
+    id: 55,
+    name: "Rajvansh Paithani",
+    image: "images/saree55.jpg",
+    price: 1550
+},
+{
+    id: 56,
+    name: "Rajvansh Paithani",
+    image: "images/saree56.jpg",
+    price: 1550
+},
+{
+    id: 57,
+    name: "Chaava Silk",
+    image: "images/saree57.jpg",
+    price: 1150
+},
+{
+    id: 58,
+    name: "Chaava Silk",
+    image: "images/saree58.jpg",
+    price: 1150
+},
+{
+    id: 59,
+    name: "Chaava Silk",
+    image: "images/saree59.jpg",
+    price: 1150
+},
+{
+    id: 60,
+    name: "Chaava Silk",
+    image: "images/saree60.jpg",
+    price: 1150
+},
+{
+    id: 61,
+    name: "Chaava Silk",
+    image: "images/saree61.jpg",
+    price: 1150
+},
+{
+    id: 62,
+    name: "Ones More",
+    image: "images/saree62.jpg",
+    price: 1250
+},
+{
+    id: 63,
+    name: "Ones More",
+    image: "images/saree63.jpg",
+    price: 1250
+},
+{
+    id: 64,
+    name: "Black Silk",
+    image: "images/saree64.jpg",
+    price: 1150
+},
+{
+    id: 65,
+    name: "Black Silk",
+    image: "images/saree65.jpg",
+    price: 1150
+},
+{
+    id: 66,
+    name: "Black Silk",
+    image: "images/saree66.jpg",
+    price: 1150
+},
+{
+    id: 67,
+    name: "Black Silk",
+    image: "images/saree67.jpg",
+    price: 1150
+},
+{
+    id: 68,
+    name: "Black Silk",
+    image: "images/saree68.jpg",
+    price: 1150
+},
+{
+    id: 69,
+    name: "Black Silk",
+    image: "images/saree69.jpg",
+    price: 1150
+},
+{
+    id: 70,
+    name: "Black Silk",
+    image: "images/saree70.jpg",
+    price: 1150
+},
+{
+    id: 71,
+    name: "Black Silk",
+    image: "images/saree71.jpg",
+    price: 1150
+},
+{
+    id: 72,
+    name: "raftar silk",
+    image: "images/saree72.jpg",
+    price: 1250 
+},
+{
+    id: 73,
+    name: "Dhamal",
+    image: "images/saree73.jpg",
+    price: 1250 
+},
+{
+    id: 74,
+    name: "kitkat",
+    image: "images/saree74.jpg",
+    price: 1150
+},
+{
+    id: 75,
+    name: "Dhamal 2",
+    image: "images/saree75.jpg",
+    price: 1250
+},
+{
+    id: 75,
+    name: "Chokobar",
+    image: "images/saree75.jpg",
+    price: 700
+},
+{
+    id: 76,
+    name: "Chokobar",
+    image: "images/saree76.jpg",
+    price: 700
+},
+{
+    id: 77,
+    name: "Chokobar",
+    image: "images/saree77.jpg",
+    price: 700
+},
+{
+    id: 78,
+    name: "Chokobar",
+    image: "images/saree78.jpg",
+    price: 700
+},
+{
+    id: 79,
+    name: "Chokobar",
+    image: "images/saree79.jpg",
+    price: 700
+},
+{
+    id: 80,
+    name: "Chokobar",
+    image: "images/saree80.jpg",
+    price: 700
+},
+{
+    id: 81,
+    name: "Chokobar",
+    image: "images/saree81.jpg",
+    price: 700
+},
+{
+    id: 82,
+    name: "Chokobar",
+    image: "images/saree82.jpg",
+    price: 700
+},
+{
+    id: 83,
+    name: "Mumbai Central",
+    image: "images/saree83.jpg",
+    price: 650
+},
+{
+    id: 84,
+    name: "Mumbai Central",
+    image: "images/saree84.jpg",
+    price: 650
+},
+{
+    id: 85,
+    name: "Divya",
+    image: "images/saree85.jpg",
+    price: 650
+},
+{
+    id: 86,
+    name: "Divya",
+    image: "images/saree86.jpg",
+    price: 650
+},
+{
+    id: 87,
+    name: "Krishna Lila",
+    image: "images/saree87.jpg",
+    price: 650
+},
+{
+    id: 88,
+    name: "Krishna Lila",
+    image: "images/saree88.jpg",
+    price: 650
+},
+{
+    id: 89,
+    name: "Dolly",
+    image: "images/saree89.jpg",
+    price: 750
+},
+{
+    id: 90,
+    name: "Dolly",
+    image: "images/saree90.jpg",
+    price: 750
+},
+{
+    id: 91,
+    name: "Sadhana",
+    image: "images/saree91.jpg",
+    price: 950
+},
+{
+    id: 92,
+    name: "Suchitra",
+    image: "images/saree92.jpg",
+    price: 850
+},
+{
+    id: 93,
+    name: "Mahira",
+    image: "images/saree93.jpg",
+    price: 900
+},
+{
+    id: 94,
+    name: "Chakori Brasso",
+    image: "images/saree94.jpg",
+    price: 1350
+},
+{
+    id: 95,
+    name: "Dolla Moss",
+    image: "images/saree95.jpg",
+    price: 550
+},
+{
+    id: 96,
+    name: "Moss Foil",
+    image: "images/saree96.jpg",
+    price: 650
+},
+{
+    id: 97,
+    name: "Rajilaxmi Silk",
+    image: "images/saree97.jpg",
+    price: 750
+},
+{
+    id: 98,
+    name: "Narangi Silk",
+    image: "images/saree98.jpg",
+    price: 1450
+},
+{
+    id: 99,
+    name: "Muniya Peacock",
+    image: "images/saree99.jpg",
+    price: 1450
 }
-    
     
     
     
