@@ -178,8 +178,137 @@ const defaultProducts = [
         price: 600
     },
     {
-
-    }
+    id: 30,
+    name: "Heavy mill dola silk",
+    image: "images/saree30.jpg",
+    price: 550
+},
+{
+    id: 31,
+    name: "Heavy mill dola silk",
+    image: "images/saree31.jpg",
+    price: 550
+},
+{
+    id: 32,
+    name: "Heavy mill dola silk",
+    image: "images/saree32.jpg",
+    price: 550
+},
+{
+    id: 33,
+    name: "Heavy mill dola silk",
+    image: "images/saree33.jpg",
+    price: 550
+},
+{
+    id: 34,
+    name: "Heavy mill dola silk",
+    image: "images/saree34.jpg",
+    price: 550
+},
+{
+    id: 35,
+    name: "Heavy mill dola silk",
+    image: "images/saree35.jpg",
+    price: 550
+},
+{
+    id: 36,
+    name: "Heavy mill dola silk",
+    image: "images/saree36.jpg",
+    price: 550
+},
+{
+    id: 37,
+    name: "Heavy mill dola silk",
+    image: "images/saree37.jpg",
+    price: 550
+},
+{
+    id: 38,
+    name: "",
+    image: "images/saree38.jpg",
+    price: 850
+},
+{
+    id: 39,
+    name: "white Moksha",
+    image: "images/saree39.jpg",
+    price: 1000
+},
+{
+    id: 40,
+    name: "Peacock",
+    image: "images/saree40.jpg",
+    price: 1350
+},
+{
+    id: 41,
+    name: "Peacock",
+    image: "images/saree41.jpg",
+    price: 1350
+},
+{
+    id: 42,
+    name: "Pushpa Silk",
+    image: "images/saree42.jpg",
+    price: 1650
+},
+{
+    id: 43,
+    name: "Pushpa Silk",
+    image: "images/saree43.jpg",
+    price: 1650
+},
+{
+    id: 44,
+    name: "Pushpa Silk",
+    image: "images/saree44.jpg",
+    price: 1650
+},
+{
+    id: 45,
+    name: "Pushpa Silk",
+    image: "images/saree45.jpg",
+    price: 1650
+},
+{
+    id: 46,
+    name: "Katha Tanya",
+    image: "images/saree46.jpg",
+    price: 1250
+},
+{
+    id: 47,
+    name: "Katha Tanya",
+    image: "images/saree47.jpg",
+    price: 1250
+},
+{
+    id: 48,
+    name: "Katha Tanya",
+    image: "images/saree48.jpg",
+    price: 1250
+},
+{
+    id: 49,
+    name: "Katha Tanya",
+    image: "images/saree49.jpg",
+    price: 1250
+},
+{
+    id: 50,
+    name: "Katha Tanya",
+    image: "images/saree50.jpg",
+    price: 1250
+},
+{
+    id: 51,
+    name: "Katha Tanya",
+    image: "images/saree51.jpg",
+    price: 1250
+}
     
     
     
