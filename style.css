@@ -438,6 +438,21 @@ header .tagline {
     font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
+/* ===== SOLD OUT BADGE ===== */
+.sold-out-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(198, 40, 40, 0.3);
+}
+
 /* ===== CONTACT SECTION ===== */
 #contact {
     background: linear-gradient(180deg, 
@@ -1220,4 +1235,140 @@ button:focus {
         justify-content: center;
         margin-top: 10px;
     }
+}
+
+/* ===== DASHBOARD STYLES ===== */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--gold-muted);
+}
+
+.dashboard-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0;
+    color: var(--text-dark);
+}
+
+.dashboard-header h2::after {
+    display: none;
+}
+
+.admin-form {
+    background: var(--white-pearl);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.admin-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--text-dark);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.admin-form h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: var(--gold-muted);
+}
+
+/* Form Select */
+.form-group select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid rgba(184, 151, 107, 0.3);
+    border-radius: 4px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    background: var(--white-soft);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: var(--gold-muted);
+    box-shadow: 0 0 0 3px rgba(184, 151, 107, 0.15);
+}
+
+/* Primary Button */
+.btn-primary {
+    width: 100%;
+    padding: 16px 30px;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-deep-green) 100%);
+    color: var(--white-pearl);
+    border: none;
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-medium);
+    box-shadow: 0 4px 15px rgba(45, 90, 39, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(45, 90, 39, 0.4);
+}
+
+.btn-primary:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Secondary Button */
+.btn-secondary {
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--text-medium);
+    border: 1px solid var(--text-muted);
+    border-radius: 50px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.btn-secondary:hover {
+    background: var(--maroon-royal);
+    color: var(--white-pearl);
+    border-color: var(--maroon-royal);
+}
+
+/* Close button in modal */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    line-height: 1;
+}
+
+.close:hover {
+    color: var(--maroon-royal);
 }
