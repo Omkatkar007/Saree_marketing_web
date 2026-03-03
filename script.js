@@ -453,12 +453,7 @@ const defaultProducts = [
     image: "images/saree75.jpg",
     price: 1250
 },
-{
-    id: 75,
-    name: "Chokobar",
-    image: "images/saree75.jpg",
-    price: 700
-},
+
 {
     id: 76,
     name: "Chokobar",
@@ -665,3 +660,4 @@ window.onload = function() {
     console.log('Page loaded, displaying products...');
     displayProducts();
 };
+
