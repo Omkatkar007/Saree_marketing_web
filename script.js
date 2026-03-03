@@ -200,9 +200,56 @@ async function addProduct(name, price, status, imageFile) {
     }
 }
 
+// ===== EDIT PRODUCT =====
+async function editProduct(productId, name, price, status, newImageFile) {
+    try {
+        const index = adminProducts.findIndex(p => p.id === productId);
+        if (index === -1) {
+            return { success: false, message: 'Product not found' };
+        }
+
+        const product = adminProducts[index];
+        product.name = name;
+        product.price = parseFloat(price);
+        product.status = status;
+
+        // If new image uploaded, update it
+        if (newImageFile) {
+            const imageUrl = await uploadToCloudinary(newImageFile);
+            product.image = imageUrl;
+        }
+
+        adminProducts[index] = product;
+        saveAdminProducts();
+        return { success: true, product: product };
+    } catch (error) {
+        return { success: false, message: error.message };
+    }
+}
+
+// ===== DELETE PRODUCT =====
+function deleteProduct(productId) {
+    const index = adminProducts.findIndex(p => p.id === productId);
+    if (index !== -1) {
+        adminProducts.splice(index, 1);
+        saveAdminProducts();
+        return { success: true };
+    }
+    return { success: false, message: 'Product not found' };
+}
+
 // ===== GET ALL PRODUCTS (Static + Admin) =====
 function getAllProducts() {
     return [...defaultProducts, ...adminProducts];
+}
+
+// ===== GET STATUS (with default for static products) =====
+function getProductStatus(product) {
+    // Static products default to 'available', admin products use stored status
+    if (product.isAdminProduct) {
+        return product.status || 'available';
+    }
+    return 'available';
 }
 
 // ===== DISPLAY PRODUCTS =====
@@ -218,8 +265,11 @@ function displayProducts() {
         const card = document.createElement('div');
         card.className = 'product-card';
         
-        const isSoldOut = product.status === 'sold_out';
+        const status = getProductStatus(product);
+        const isSoldOut = status === 'sold_out';
         const soldOutBadge = isSoldOut ? '<span class="sold-out-badge">Sold Out</span>' : '';
+        const statusClass = isSoldOut ? 'status-sold-out' : 'status-available';
+        const statusText = isSoldOut ? 'Sold Out' : 'Available';
         
         card.innerHTML = 
             '<div class="product-image-wrapper">' +
@@ -229,9 +279,47 @@ function displayProducts() {
             '<div class="product-info">' +
                 '<h3>' + product.name + '</h3>' +
                 '<p class="product-price">₹' + product.price.toLocaleString('en-IN') + '</p>' +
+                '<p class="product-status ' + statusClass + '">' + statusText + '</p>' +
             '</div>';
         
         productGrid.appendChild(card);
+    }
+}
+
+// ===== DISPLAY ADMIN PRODUCTS (for management page) =====
+function displayAdminProducts() {
+    const productList = document.getElementById('admin-product-list');
+    if (!productList) return;
+    
+    productList.innerHTML = '';
+    
+    if (adminProducts.length === 0) {
+        productList.innerHTML = '<p style="text-align: center; color: #666;">No products added yet.</p>';
+        return;
+    }
+    
+    for (let i = 0; i < adminProducts.length; i++) {
+        const product = adminProducts[i];
+        const isSoldOut = product.status === 'sold_out';
+        const statusText = isSoldOut ? 'Sold Out' : 'Available';
+        
+        const item = document.createElement('div');
+        item.className = 'admin-product-item';
+        item.innerHTML = 
+            '<div class="admin-product-image">' +
+                '<img src="' + product.image + '" alt="' + product.name + '">' +
+            '</div>' +
+            '<div class="admin-product-details">' +
+                '<h4>' + product.name + '</h4>' +
+                '<p class="product-price">₹' + product.price.toLocaleString('en-IN') + '</p>' +
+                '<p class="product-status ' + (isSoldOut ? 'status-sold-out' : 'status-available') + '">' + statusText + '</p>' +
+            '</div>' +
+            '<div class="admin-product-actions">' +
+                '<button onclick="openEditModal(' + product.id + ')" class="btn-edit">Edit</button>' +
+                '<button onclick="confirmDeleteProduct(' + product.id + ')" class="btn-delete">Delete</button>' +
+            '</div>';
+        
+        productList.appendChild(item);
     }
 }
 
@@ -253,6 +341,9 @@ function showAdminDashboard() {
     if (dashboard) dashboard.style.display = 'block';
     const mainContent = document.querySelector('header, #products, #contact, footer');
     if (mainContent) mainContent.style.display = 'none';
+    
+    // Display admin products list
+    displayAdminProducts();
 }
 
 // ===== HIDE ADMIN DASHBOARD =====
@@ -267,6 +358,37 @@ function hideAdminDashboard() {
 function refreshProducts() {
     displayProducts();
     hideAdminDashboard();
+}
+
+// ===== OPEN EDIT MODAL =====
+function openEditModal(productId) {
+    const product = adminProducts.find(p => p.id === productId);
+    if (!product) return;
+    
+    document.getElementById('edit-product-id').value = product.id;
+    document.getElementById('edit-product-name').value = product.name;
+    document.getElementById('edit-product-price').value = product.price;
+    document.getElementById('edit-product-status').value = product.status || 'available';
+    document.getElementById('edit-product-image-preview').src = product.image;
+    document.getElementById('edit-product-image-preview').style.display = 'block';
+    document.getElementById('edit-new-image-label').style.display = 'none';
+    document.getElementById('edit-product-image').value = '';
+    
+    document.getElementById('edit-modal').style.display = 'flex';
+}
+
+// ===== HIDE EDIT MODAL =====
+function hideEditModal() {
+    document.getElementById('edit-modal').style.display = 'none';
+}
+
+// ===== CONFIRM DELETE PRODUCT =====
+function confirmDeleteProduct(productId) {
+    if (confirm('Are you sure you want to delete this product?')) {
+        deleteProduct(productId);
+        displayAdminProducts();
+        displayProducts();
+    }
 }
 
 // ===== INITIALIZE WHEN PAGE LOADS =====

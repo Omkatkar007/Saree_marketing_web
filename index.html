@@ -116,10 +116,52 @@
                 </form>
             </div>
             
+            <!-- Admin Products List -->
+            <div class="admin-products-section">
+                <h3>Your Products</h3>
+                <div id="admin-product-list"></div>
+            </div>
+            
             <!-- Back to Website -->
             <div style="margin-top: 30px;">
                 <button onclick="refreshProducts()" class="btn-secondary">Back to Website</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="edit-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="hideEditModal()">&times;</span>
+            <h2>Edit Product</h2>
+            <form id="edit-product-form">
+                <input type="hidden" id="edit-product-id">
+                <div class="form-group">
+                    <label>Saree Name</label>
+                    <input type="text" id="edit-product-name" required placeholder="Enter saree name">
+                </div>
+                <div class="form-group">
+                    <label>Price (₹)</label>
+                    <input type="number" id="edit-product-price" required min="1" placeholder="Enter price">
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="edit-product-status">
+                        <option value="available">Available</option>
+                        <option value="sold_out">Sold Out</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Current Image</label>
+                    <img id="edit-product-image-preview" style="max-width: 150px; display: none; border-radius: 5px;">
+                    <div id="edit-new-image-label" style="margin-top: 10px;">
+                        <label>Change Image (optional)</label>
+                        <input type="file" id="edit-product-image" accept="image/*">
+                    </div>
+                </div>
+                <div id="edit-status" style="margin: 10px 0;"></div>
+                <button type="submit" class="btn-primary" id="edit-product-btn">Save Changes</button>
+            </form>
         </div>
     </div>
 
@@ -186,6 +228,7 @@
                 
                 // Refresh products display
                 displayProducts();
+                displayAdminProducts();
             } else {
                 uploadStatus.textContent = 'Error: ' + result.message;
                 uploadStatus.style.color = 'red';
@@ -195,11 +238,54 @@
             submitBtn.textContent = 'Add Product';
         });
         
+        // Handle Edit Product Form Submit
+        document.getElementById('edit-product-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const productId = parseInt(document.getElementById('edit-product-id').value);
+            const name = document.getElementById('edit-product-name').value;
+            const price = document.getElementById('edit-product-price').value;
+            const status = document.getElementById('edit-product-status').value;
+            const newImageFile = document.getElementById('edit-product-image').files[0];
+            const editStatus = document.getElementById('edit-status');
+            const submitBtn = document.getElementById('edit-product-btn');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+            editStatus.textContent = 'Saving changes...';
+            editStatus.style.color = 'blue';
+            
+            const result = await editProduct(productId, name, price, status, newImageFile);
+            
+            if (result.success) {
+                editStatus.textContent = 'Product updated successfully!';
+                editStatus.style.color = 'green';
+                
+                // Refresh displays
+                setTimeout(function() {
+                    hideEditModal();
+                    displayAdminProducts();
+                    displayProducts();
+                }, 1000);
+            } else {
+                editStatus.textContent = 'Error: ' + result.message;
+                editStatus.style.color = 'red';
+            }
+            
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Save Changes';
+        });
+        
         // Close modal when clicking outside
         window.onclick = function(event) {
-            const modal = document.getElementById('admin-login-modal');
-            if (event.target === modal) {
+            const loginModal = document.getElementById('admin-login-modal');
+            const editModal = document.getElementById('edit-modal');
+            
+            if (event.target === loginModal) {
                 hideAdminLoginModal();
+            }
+            if (event.target === editModal) {
+                hideEditModal();
             }
         };
     </script>
